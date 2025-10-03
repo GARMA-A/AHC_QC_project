@@ -1,0 +1,48 @@
+services:
+  db:
+    image: postgres:15
+    container_name: myapp_db
+    restart: always
+    environment:
+      POSTGRES_USER: myuser
+      POSTGRES_PASSWORD: mypassword
+      POSTGRES_DB: mydatabase
+    ports:
+      - "5432:5432"
+    volumes:
+      - db_data:/var/lib/postgresql/data
+
+  backend:
+    build: ./apps/backend
+    container_name: myapp_backend
+    restart: always
+    depends_on:
+      - db
+    environment:
+      DATABASE_URL: postgres://myuser:mypassword@db:5432/mydatabase
+      NODE_ENV: development
+    ports:
+      - "4000:4000"
+    command: npm run start:dev
+    volumes:
+      - ./apps/backend:/usr/src/app
+      - /usr/src/app/node_modules
+
+  frontend:
+    build: ./apps/frontend
+    container_name: myapp_frontend
+    restart: always
+    depends_on:
+      - backend
+    environment:
+      NEXT_PUBLIC_API_URL: http://localhost:4000
+      NODE_ENV: development
+    ports:
+      - "3000:3000"
+    command: npm run dev
+    volumes:
+      - ./apps/frontend:/usr/src/app
+      - /usr/src/app/node_modules
+
+volumes:
+  db_data:

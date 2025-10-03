@@ -1,0 +1,76 @@
+# =========================================
+# 🟡 Node & Dependencies
+# =========================================
+**/node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# =========================================
+# 🔵 Build Output / Compiled Files
+# =========================================
+dist/
+.next/
+out/
+build/
+
+# =========================================
+# 📝 Environment Files
+# =========================================
+**/.env
+**/.env.*
+**/!.env.example   # keep an example env file for documentation
+
+# =========================================
+# 🐳 Docker
+# =========================================
+# Ignore local docker volumes or artifacts
+**/tmp/
+**/data/
+**/docker-data/
+**/docker-volume/
+**/.docker/
+
+# =========================================
+# ⚙️ TypeScript
+# =========================================
+*.tsbuildinfo
+
+# =========================================
+# 🧪 Tests & Coverage
+# =========================================
+coverage/
+jest-coverage/
+.vscode-test/
+
+# =========================================
+# 🖼 OS / Editor Files
+# =========================================
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp
+*.swo
+*.swn
+*.swm
+
+# =========================================
+# 📝 Logs
+# =========================================
+logs
+*.log
+*.log.*
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# =========================================
+# 🧠 Misc
+# =========================================
+# Ignore lock files if you're using a single package manager globally.
+# (Optional, depends on your team policy)
+yarn.lock
+pnpm-lock.yaml
